@@ -1,40 +1,9 @@
-# LaTeX compilation artifacts
-*.aux
-*.log
-*.out
-*.toc
-*.fls
-*.fmt
-*.fot
-*.cb
-*.cb2
-.*.lb
-*.synctex.gz
-
-# latexmk - VS code extension
-*.fdb_latexmk
-*.fls
-*.bak
-
-# Compiled documents
+build/
+env/
 *.pdf
-
-# Exported databases and lists
-export/
-doc/export/
-
-#images
-*.jpg
-*.jpeg
-*.png
-*.cgstats
-*.cgstats
-
-# QR Code generated assets
-production/production_assets/production_qrcodes/*.pdf
-tests/tests_assets/tests_qrcodes/*.pdf
-export/qrcodes_manifest.json
-
-# Python Virtual Environment
-scripts/python/.venv/
-__pycache__/
+*.log
+*.aux
+*.json
+*.txt
+.dvc/config.local
+/fig

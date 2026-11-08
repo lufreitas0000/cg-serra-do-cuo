@@ -33,7 +33,8 @@ git clone --recurse-submodules https://github.com/lufreitas0000/cg-serra-do-cuo.
 cd cg-serra-do-cuo
 python3 -m venv env
 . env/bin/activate
-python -m pip install 'dvc[gdrive]==3.67.1' 'dvc-gdrive==3.0.1' -r infra/engine/scripts/python/requirements.txt
+python -m pip install -r scripts/requirements-build.txt
+python -m pip check
 dvc pull fig.dvc
 make build
 make validate

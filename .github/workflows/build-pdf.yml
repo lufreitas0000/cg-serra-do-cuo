@@ -33,7 +33,8 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y texlive-luatex texlive-latex-extra texlive-fonts-recommended fonts-roboto fontconfig poppler-utils
-          python -m pip install 'dvc[gdrive]==3.67.1' 'dvc-gdrive==3.0.1' -r infra/engine/scripts/python/requirements.txt
+          python -m pip install -r scripts/requirements-build.txt
+          python -m pip check
       - name: Install guide fonts
         env:
           FONT_REV: 5bb28733cec313b63fbd415b574b5ae35c8aa8b8

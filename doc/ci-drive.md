@@ -145,3 +145,9 @@ clone with an empty cache downloaded all 35 files (31,251,333 bytes) using the
 service account. This verifies both the updated remote data and the CI download
 identity. The gcloud login does not renew the separate expired DVC OAuth cache;
 developers using interactive DVC OAuth must renew that authorization separately.
+
+Hosted build [42506684643](https://github.com/lufreitas0000/cg-serra-do-cuo/actions/runs/42506684643)
+passed with a clean runner and the repository secret. Install Python dependencies
+from `scripts/requirements-build.txt`: unconstrained installation allowed an
+incompatible PyDrive2/pyOpenSSL/cryptography combination on the first hosted run.
+The shared requirements and `pip check` prevent that observed resolver failure.

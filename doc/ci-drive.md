@@ -137,3 +137,11 @@ identity can read the existing data. The restored three images and updated
 35-file manifest still require an owner-authenticated upload before the new
 candidate can pass a hosted build. The service-account upload failed with the
 My Drive storage-quota restriction described above.
+
+The owner then authorized gcloud with `gcloud auth login --enable-gdrive-access`.
+A short-lived user access token was supplied to DVC in memory, without storing
+or printing the token. Upload succeeded: four new objects. A second independent
+clone with an empty cache downloaded all 35 files (31,251,333 bytes) using the
+service account. This verifies both the updated remote data and the CI download
+identity. The gcloud login does not renew the separate expired DVC OAuth cache;
+developers using interactive DVC OAuth must renew that authorization separately.

@@ -1,0 +1,8 @@
+dvc[gdrive]==3.67.1
+dvc-gdrive==3.0.1
+# PyDrive2 1.21.3 requires cryptography <44. Newer asyncssh requires >=45;
+# avoid resolver fallback to old PyDrive2/pyOpenSSL with incompatible OpenSSL.
+PyDrive2==1.21.3
+pyOpenSSL==24.2.1
+asyncssh==2.20.0
+-r ../infra/engine/scripts/python/requirements.txt

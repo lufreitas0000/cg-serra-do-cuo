@@ -5,6 +5,7 @@ env/
 *.aux
 *.json
 *.txt
+!scripts/requirements-build.txt
 .dvc/config.local
 /fig
 *.cgstats

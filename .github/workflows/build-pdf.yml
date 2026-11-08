@@ -2,7 +2,7 @@ name: Build guide PDF
 
 on:
   push:
-    branches: [main, codex/guide-publication-features]
+    branches: [main]
     tags: ['v*']
   pull_request:
   workflow_dispatch:

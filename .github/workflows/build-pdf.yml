@@ -1,0 +1,94 @@
+name: Build guide PDF
+
+on:
+  push:
+    branches: [main, codex/guide-publication-features]
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pdf-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    # Drive credentials are unavailable to fork pull requests.
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y texlive-luatex texlive-latex-extra texlive-fonts-recommended fonts-roboto fontconfig poppler-utils
+          python -m pip install 'dvc[gdrive]==3.67.1' 'dvc-gdrive==3.0.1' -r infra/engine/scripts/python/requirements.txt
+      - name: Install guide fonts
+        env:
+          FONT_REV: 5bb28733cec313b63fbd415b574b5ae35c8aa8b8
+        run: |
+          mkdir -p "$HOME/.local/share/fonts"
+          for name in BarlowCondensed-Regular BarlowCondensed-Bold; do
+            curl --fail --location --retry 3 "https://raw.githubusercontent.com/google/fonts/$FONT_REV/ofl/barlowcondensed/$name.ttf" -o "$HOME/.local/share/fonts/$name.ttf"
+          done
+          curl --fail --location --retry 3 "https://raw.githubusercontent.com/google/fonts/$FONT_REV/ofl/bebasneue/BebasNeue-Regular.ttf" -o "$HOME/.local/share/fonts/BebasNeue-Regular.ttf"
+          fc-cache -f
+      - name: Restore images from Google Drive
+        env:
+          GDRIVE_CREDENTIALS_DATA: ${{ secrets.GDRIVE_CREDENTIALS_DATA }}
+        run: |
+          if [ -z "$GDRIVE_CREDENTIALS_DATA" ]; then
+            echo '::error::Set the GDRIVE_CREDENTIALS_DATA repository secret to the read-only Drive service-account JSON key. See doc/ci-drive.md.'
+            exit 1
+          fi
+          dvc remote modify --local gdrive gdrive_use_service_account true
+          dvc pull fig.dvc --remote gdrive
+      - name: Compile and validate guide
+        run: |
+          make build PYTHON_BIN=python
+          make validate PYTHON_BIN=python
+      - name: Upload guide PDF
+        uses: actions/upload-artifact@v4
+        with:
+          name: serra-do-cuo-${{ github.sha }}
+          path: |
+            build/serra_do_cuo.pdf
+            build/edition.json
+          if-no-files-found: error
+      - name: Upload build diagnostics
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-diagnostics-${{ github.sha }}
+          path: build/*.log
+          if-no-files-found: ignore
+
+  release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: build
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: serra-do-cuo-${{ github.sha }}
+          path: release
+      - name: Publish versioned PDF
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          gh release create "$RELEASE_TAG" release/serra_do_cuo.pdf release/edition.json --verify-tag --title "Serra do Cuó $RELEASE_TAG" --generate-notes

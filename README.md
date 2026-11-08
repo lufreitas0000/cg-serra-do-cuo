@@ -6,6 +6,9 @@ sobre as falésias entre Paraíso e Catedral.
 
 **[Baixar o PDF da última edição](https://github.com/lufreitas0000/cg-serra-do-cuo/releases/latest/download/serra_do_cuo.pdf)**
 
+[![Versão publicada](https://img.shields.io/github/v/release/lufreitas0000/cg-serra-do-cuo?label=edi%C3%A7%C3%A3o)](https://github.com/lufreitas0000/cg-serra-do-cuo/releases/latest)
+[![Data da publicação](https://img.shields.io/github/release-date/lufreitas0000/cg-serra-do-cuo?label=publica%C3%A7%C3%A3o)](https://github.com/lufreitas0000/cg-serra-do-cuo/releases/latest)
+
 O link estará disponível após a primeira release. Cada PDF informa a versão e a
 data da fonte na ficha editorial; os metadados anexos identificam o commit, a
 engine e a coleção de imagens. A data da edição não comprova revisão de todas as vias.

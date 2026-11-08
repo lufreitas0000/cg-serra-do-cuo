@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="146" height="30" role="img" aria-label="Wikiloc: Trilhas">
+  <title>Wikiloc: Trilhas</title>
+  <rect width="146" height="30" rx="4" fill="#497f29"/>
+  <path d="M82 0h60q4 0 4 4v22q0 4-4 4H82z" fill="#37601e"/>
+  <g fill="#fff" font-family="Verdana,Arial,sans-serif" font-size="11" text-anchor="middle">
+    <text x="41" y="19" font-weight="bold">Wikiloc</text><text x="114" y="19">Trilhas</text>
+  </g>
+</svg>

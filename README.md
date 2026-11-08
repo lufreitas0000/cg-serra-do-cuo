@@ -2,9 +2,9 @@
 
 Guia não oficial de Campo Grande/RN: Zona Baixa, Paraíso, Catedral e Talhado dos Americanos.
 
-[**Baixar o guia em PDF · prévia**](https://github.com/lufreitas0000/cg-serra-do-cuo/actions/runs/42507516294/artifacts/13628400954)
+[**Baixar o guia em PDF · prévia**](https://github.com/lufreitas0000/cg-serra-do-cuo/releases/download/preview-2026-11-08/serra_do_cuo.pdf)
 
-Prévia compilada disponível nos artefatos dessa execução; o download requer login no GitHub.
+Prévia de 8 de novembro de 2026 · download direto, sem conta no GitHub.
 
 [![TheCrag: vias e comunidade](.github/badges/thecrag.svg)](https://www.thecrag.com/en/climbing/brazil/area/14372948250)
 [![Wikiloc: trilhas](.github/badges/wikiloc.svg)](https://pt.wikiloc.com/wikiloc/user.do?id=20929616&event=favorites&listId=2256269)

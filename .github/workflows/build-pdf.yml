@@ -59,6 +59,18 @@ jobs:
         run: |
           make build PYTHON_BIN=python
           make validate PYTHON_BIN=python
+          make site PYTHON_BIN=python
+      - name: Upload companion page preview
+        uses: actions/upload-artifact@v4
+        with:
+          name: companion-page-${{ github.sha }}
+          path: build/site/
+          if-no-files-found: error
+      - name: Prepare GitHub Pages artifact
+        if: github.ref == 'refs/heads/main' && vars.PUBLISH_PAGES == 'true'
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: build/site/
       - name: Upload guide PDF
         uses: actions/upload-artifact@v4
         with:
@@ -93,3 +105,17 @@ jobs:
           RELEASE_TAG: ${{ github.ref_name }}
         run: |
           gh release create "$RELEASE_TAG" release/serra_do_cuo.pdf release/edition.json --verify-tag --title "Serra do Cuó $RELEASE_TAG" --generate-notes
+
+  pages:
+    if: github.ref == 'refs/heads/main' && vars.PUBLISH_PAGES == 'true'
+    needs: build
+    runs-on: ubuntu-24.04
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/deploy-pages@v4
+        id: deployment

@@ -14,10 +14,13 @@ PYTHON_BIN := $(shell if [ -f ./env/bin/python ]; then echo "./env/bin/python"; 
 
 all: build
 
-.PHONY: all init-dirs build validate check-assets clean
+.PHONY: all init-dirs build validate check-assets site clean
 
 check-assets:
 	@$(PYTHON_BIN) scripts/check_assets.py
+
+site:
+	@$(PYTHON_BIN) scripts/build_site.py --build $(BUILD_DIR)
 
 init-dirs:
 	@mkdir -p $(BUILD_DIR) $(EXPORT_DIR) $(QR_DIR)

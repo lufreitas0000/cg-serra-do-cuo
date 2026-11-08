@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Guia de escalada da Serra do Cuó, Campo Grande/RN. PDF, vias da edição e links da comunidade.">
+  <title>Serra do Cuó · Guia de escalada</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <header>
+    <p class="eyebrow">CAMPO GRANDE / RIO GRANDE DO NORTE</p>
+    <h1>Escalada na<br>Serra do Cuó</h1>
+    <p class="intro">Um guia para levar à rocha.<br>Uma comunidade para continuar a história.</p>
+    <a class="download" href="serra_do_cuo.pdf" download>Baixar o guia em PDF <span aria-hidden="true">↓</span></a>
+    <p class="edition">Edição não oficial · fonte de {{DATE}} · versão {{VERSION}}</p>
+  </header>
+
+  <section class="counts" aria-label="Conteúdo desta edição">
+    <div><strong>{{ROUTES}}</strong><span>vias no guia</span></div>
+    <div><strong>{{SECTORS}}</strong><span>setores com vias</span></div>
+    <div><strong>{{ZONES}}</strong><span>zonas com vias</span></div>
+  </section>
+
+  <section class="community">
+    <h2>Antes de partir, consulte a comunidade.</h2>
+    <p>O PDF registra esta edição. No TheCrag, consulte atualizações e contribua com
+      descrições, correções e ascensões. No Wikiloc, encontre as trilhas.</p>
+    <nav aria-label="Comunidade e trilhas">
+      <a href="https://www.thecrag.com/en/climbing/brazil/area/14372948250">TheCrag <span aria-hidden="true">↗</span></a>
+      <a href="https://pt.wikiloc.com/wikiloc/user.do?id=20929616&amp;event=favorites&amp;listId=2256269">Wikiloc <span aria-hidden="true">↗</span></a>
+    </nav>
+  </section>
+
+  <details class="catalogue">
+    <summary>Consultar as vias desta edição</summary>
+    <p class="note">Este catálogo e os números acima correspondem ao PDF. Consulte o TheCrag para contribuições posteriores.</p>
+    {{CATALOGUE}}
+  </details>
+  <footer>
+    <p>Zona Baixa · Paraíso · Catedral · Talhado dos Americanos</p>
+    <a href="https://github.com/lufreitas0000/cg-serra-do-cuo/blob/main/CONTRIBUTING.md">Contribuir com o guia</a>
+    <span aria-hidden="true"> · </span><a href="edition.json">Dados da edição</a>
+  </footer>
+</main>
+</body>
+</html>

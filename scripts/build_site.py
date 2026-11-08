@@ -36,7 +36,9 @@ def main():
     template = (root / 'site/index.html').read_text()
     values = {'ROUTES': str(stats['routes']), 'SECTORS': str(stats['sectors']),
               'ZONES': str(stats['zones']), 'VERSION': escape(edition['version']),
-              'DATE': escape(edition['source_date']), 'CATALOGUE': ''.join(sections)}
+              'DATE': escape(edition['source_date']), 'CATALOGUE': ''.join(sections),
+              'SOURCE_URL': escape('https://github.com/lufreitas0000/cg-serra-do-cuo/blob/'
+                                   + edition['commit'] + '/CONTRIBUTING.md')}
     for key, value in values.items():
         template = template.replace('{{' + key + '}}', value)
     target = args.build / 'site'
